@@ -12,10 +12,9 @@ const newTask = ref ("");
             <button :disabled="newTask.length == 0">Ajouter la tache</button>
         </form>
     </div>
-    <div <!--v-if="tasks.length"--> >
+    <div>
         <TaskList></TaskList>
     </div>
-    <div <!--v-else--> >Aucune tâche pour le moment</div>
 </template>
 
 <style scoped>
