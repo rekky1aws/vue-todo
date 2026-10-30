@@ -1,7 +1,20 @@
 <script setup lang="ts">
 const props = defineProps({
-  task:Object
+  task: Object
 });
+
+const emits = defineEmits([
+  "complete",
+  "delete"
+]);
+
+const completeTask = (task: Object) => {
+  emits('complete', task);
+};
+
+const deleteTask = (task: Object) => {
+  emits('delete', task);
+};
 </script>
 <!--  -->
 <template>
