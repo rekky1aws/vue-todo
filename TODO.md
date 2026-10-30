@@ -3,3 +3,6 @@
  + Faire fonctionner les interactions avec le parent :
   + Completer une tache
   + Supprimer une tache
+
++ Faire un component pour ajouter une tache
+ + Envoyer la tache à la TaskList
