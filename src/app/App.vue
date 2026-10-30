@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import TaskList from '@/features/todo/components/TaskList.vue';
 import {ref} from 'vue';
 
 const newTask = ref ("");
@@ -68,44 +69,11 @@ sortTasks();
         </form>
     </div>
     <div v-if="tasks.length">
-        <ul>
-            <li v-for="task in tasks" :class="{completed: task.completed}" :key="task.title">
-                <button class="checkBtn" @click="completeTask(task)">
-                    {{ task.completed ? "o" : "O" }}
-                </button>
-                <button class="delBtn" @click="deleteTask(task)">X</button>
-                <span>{{ task.title }}</span>
-            </li>
-        </ul>
+        <TaskList :tasks="tasks"></TaskList>
     </div>
     <div v-else>Aucune tâche pour le moment</div>
 </template>
 
 <style scoped>
-.completed {
-    opacity: 0.5;
-}
 
-.completed > span {
-    text-decoration: line-through;
-}
-
-li {
-    display: flex;
-    gap: 0.5rem;
-    margin: 0.25rem;
-}
-
-li > button {
-    width: 2rem;
-    font-weight: bold;
-}
-
-.checkedBtn:hover {
-    color: lime;
-}
-
-.delBtn {
-    color:red;
-}
 </style>
