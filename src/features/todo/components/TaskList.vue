@@ -68,9 +68,15 @@ sortTasks();
 </script>
 <!--  -->
 <template>
-  <ul>
-    <Task v-for="task in tasks" :task="task" @complete="completeTask(task)" @delete="deleteTask(task)"></Task>        
+  <ul v-if="tasks.length">
+    <Task
+        v-for="task in tasks"
+        :task="task"
+        @complete="completeTask(task)"
+        @delete="deleteTask(task)"
+    />
   </ul>
+  <div v-else>Pas de tâches à afficher</div>
 </template>
 <!--  -->
 <style scoped>
