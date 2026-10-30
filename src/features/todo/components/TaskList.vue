@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import Task from '@/features/todo/components/Task.vue';
+import {ref} from 'vue';
 
-const props = defineProps({
-  tasks: Array
-});
+const emits = defineEmits([
+    "nbTasks"
+]);
 
 const tasks = ref([
     {
@@ -17,6 +18,7 @@ const tasks = ref([
         date: Date.now()
     }
 ]);
+emits("nbTasks", tasks.value.length);
 
 const sortTasks = () => {
     tasks.value = tasks.value.sort((a,b) => {
@@ -41,6 +43,7 @@ const addTask = (newTaskName:string) => {
 
     newTask.value = "";
     sortTasks();
+    emits('nbTasks', tasks.value.length);
 };
 
 const deleteTask = (task:any) => {
@@ -66,7 +69,7 @@ sortTasks();
 <!--  -->
 <template>
   <ul>
-    <Task v-for="task in props.tasks" :task="task"></Task>        
+    <Task v-for="task in tasks" :task="task" @complete="completeTask(task)" @delete="deleteTask(task)"></Task>        
   </ul>
 </template>
 <!--  -->
