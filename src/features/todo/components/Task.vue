@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const props = defineProps({
-  task: Object
+  task: {
+    type: Object,
+    required: true
+  }
 });
 
 const emits = defineEmits([
@@ -18,12 +21,12 @@ const deleteTask = (task: Object) => {
 </script>
 <!--  -->
 <template>
-  <li :class="{completed: task.completed}" :key="task.title">
-    <button class="checkBtn" @click="completeTask(task)">
-      {{ task.completed ? "o" : "O" }}
+  <li :class="{completed: props.task.completed}" :key="props.task.title">
+    <button class="checkBtn" @click="completeTask(props.task)">
+      {{ props.task.completed ? "o" : "O" }}
     </button>
-    <button class="delBtn" @click="deleteTask(task)">X</button>
-    <span>{{ task.title }}</span>
+    <button class="delBtn" @click="deleteTask(props.task)">X</button>
+    <span>{{ props.task.title }}</span>
   </li>
 </template>
 <!--  -->
