@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import DeleteButton from '@/shared/ui/DeleteButton.vue';
+import PrimaryButton from '@/shared/ui/PrimaryButton.vue';
+
 const props = defineProps({
   task: {
     type: Object,
@@ -22,10 +25,10 @@ const deleteTask = (task: Object) => {
 <!--  -->
 <template>
   <li :class="{completed: props.task.completed}" :key="props.task.title">
-    <button class="checkBtn" @click="completeTask(props.task)">
+    <PrimaryButton class="checkBtn" @click="completeTask(props.task)">
       {{ props.task.completed ? "o" : "O" }}
-    </button>
-    <button class="delBtn" @click="deleteTask(props.task)">X</button>
+    </PrimaryButton>
+    <DeleteButton @click="deleteTask(props.task)">X</DeleteButton>
     <span>{{ props.task.title }}</span>
   </li>
 </template>
@@ -52,10 +55,6 @@ li > button {
 
 .checkBtn:hover {
     color: lime;
-}
-
-.delBtn {
-    color:red;
 }
 
 </style>
