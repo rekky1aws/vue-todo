@@ -66,6 +66,16 @@ const loadFromLocalStorage = () => {
   tasks.value = JSON.parse(localStorage.getItem('tasks'));
 };
 
+const emptyTasks = () => {
+  if (!window.confirm("Êtes-vous sur de vouloir supprimer entièrement la liste des tâches (cela supprimera aussi les données sauvegardées en local) ?")) {
+    console.log("Task not deleted");
+    return false;
+  }
+  
+  tasks.value = [];
+  saveToLocalStorage();
+}
+
 loadFromLocalStorage();
 sortTasks();
 
@@ -79,14 +89,17 @@ sortTasks();
     </form>
   </div>
   <div>
-    <ul v-if="tasks.length">
-      <Task
-      v-for="task in tasks"
-      :task="task"
-      @complete="completeTask(task)"
-      @delete="deleteTask(task)"
-      />
-    </ul>
+    <div v-if="tasks.length">
+      <ul>
+        <Task
+        v-for="task in tasks"
+        :task="task"
+        @complete="completeTask(task)"
+        @delete="deleteTask(task)"
+        />
+      </ul>
+      <button @click="emptyTasks">Clear List</button>
+    </div>
     <div v-else>Pas de tâches à afficher</div>
   </div>
 </template>
