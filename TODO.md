@@ -1,3 +1,3 @@
 # TODO
-+ Faire un component pour ajouter une tache
- + Envoyer la tache à la TaskList
++ Sauvegarder les taches dans le localStorage
++ Bouton pour nettoyer toute la liste
