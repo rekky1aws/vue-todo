@@ -98,7 +98,7 @@ sortTasks();
         @delete="deleteTask(task)"
         />
       </ul>
-      <button @click="emptyTasks">Clear List</button>
+      <button @click="emptyTasks">Supprimer toutes les tâches</button>
     </div>
     <div v-else>Pas de tâches à afficher</div>
   </div>
