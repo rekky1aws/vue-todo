@@ -8,18 +8,7 @@ const emits = defineEmits([
 
 const newTask = ref('');
 
-const tasks = ref([
-{
-  title: "Test completed",
-  completed: true,
-  date: Date.now()
-},
-{
-  title: "Test not completed",
-  completed: false,
-  date: Date.now()
-}
-]);
+const tasks = ref([]);
 emits("nbTasks", tasks.value.length);
 
 const sortTasks = () => {
@@ -45,6 +34,7 @@ const addTask = (newTaskName:string) => {
   
   newTask.value = "";
   sortTasks();
+  saveToLocalStorage();
   emits('nbTasks', tasks.value.length);
 };
 
@@ -58,13 +48,25 @@ const deleteTask = (task:any) => {
     return taskE !==  task;
   });
   sortTasks();
+  saveToLocalStorage();
 };
 
 const completeTask = (task:any) => {
   task.completed = !task.completed;
   sortTasks();
+  saveToLocalStorage();
 };
 
+const saveToLocalStorage = () => {
+  localStorage.setItem('tasks', JSON.stringify(tasks.value));
+
+};
+
+const loadFromLocalStorage = () => {
+  tasks.value = JSON.parse(localStorage.getItem('tasks'));
+};
+
+loadFromLocalStorage();
 sortTasks();
 
 </script>
